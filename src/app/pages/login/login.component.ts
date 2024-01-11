@@ -14,6 +14,7 @@ export class LoginComponent implements OnInit {
 
   ngOnInit() {
     this.circle()
+    this.verifyTokenUrlCallback()
   }
 
   circle() {
@@ -41,6 +42,13 @@ export class LoginComponent implements OnInit {
 
   openLoginPage() {
     window.location.href = this.spotifyService.getLoginUrl()
+  }
+
+  verifyTokenUrlCallback() {
+    const token = this.spotifyService.getTokenUrlCallback()
+    if (!!token) {
+      this.spotifyService.defineAccessToken(token)
+    }
   }
 
 }
